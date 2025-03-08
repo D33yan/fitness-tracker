@@ -125,7 +125,7 @@ export default function DietTracker({ stats, updateStats }: DietTrackerProps) {
       <Card>
         <CardHeader>
           <CardTitle>Meals</CardTitle>
-          <CardDescription>Track your food intake throughout the day</CardDescription>
+          <CardDescription>Track your food intake throughout the days</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <AnimatePresence>

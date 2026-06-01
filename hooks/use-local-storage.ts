@@ -1,10 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   // State to store our value
   const [storedValue, setStoredValue] = useState<T>(initialValue)
+
+  const initialValueRef = useRef(initialValue)
+  useEffect(() => {
+    initialValueRef.current = initialValue
+  }, [initialValue])
 
   // Initialize the state
   useEffect(() => {
@@ -12,13 +17,13 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
       // Get from local storage by key
       const item = window.localStorage.getItem(key)
       // Parse stored json or if none return initialValue
-      setStoredValue(item ? JSON.parse(item) : initialValue)
+      setStoredValue(item ? JSON.parse(item) : initialValueRef.current)
     } catch (error) {
       // If error also return initialValue
       console.log(error)
-      setStoredValue(initialValue)
+      setStoredValue(initialValueRef.current)
     }
-  }, [key, initialValue])
+  }, [key])
 
   // Return a wrapped version of useState's setter function that
   // persists the new value to localStorage.

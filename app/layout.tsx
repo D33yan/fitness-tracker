@@ -1,10 +1,19 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'FitTrack | Complete Fitness Tracker PWA',
+  description: 'Track your diet, exercise, and sleep patterns all in one place',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'FitTrack',
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#1D9E75',
 }
 
 export default function RootLayout({
